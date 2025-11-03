@@ -8,7 +8,7 @@ class User {
     return users[i];
   }
   CreateUser(name) {
-    return users.push(name)
+    users.push(name)
   }
 
   Update(i, name) {
@@ -20,4 +20,4 @@ class User {
   }
 }
 
-module.exports = User
+module.exports = new User()
