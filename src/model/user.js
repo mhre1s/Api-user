@@ -1,23 +1,24 @@
-const users = ["Jão", "Ana", "Pedro"]
+const database = require("../database")
 
 class User {
-  FindAll() {
-    return users;
-  }
-  FindByIndex(i) {
-    return users[i];
-  }
-  CreateUser(name) {
-    users.push(name)
-  }
-
-  Update(i, name) {
-    users[i] = name
-  }
-
-  Delete(i) {
-    users.splice(i, 1)
+  constructor(){
+    this.model = database.db.define("users", {
+      id: {
+        type: database.db.Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      email: {
+        type: database.db.Sequelize.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      password: {
+        type: database.db.Sequelize.STRING,
+        allowNull: false,
+      },
+    });
   }
 }
 
-module.exports = new User()
+module.exports = new User().model
