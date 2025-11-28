@@ -14,6 +14,13 @@ class Person {
       },
       address:{
         type: database.db.Sequelize.STRING
+      },
+      userId:{
+        type: database.db.Sequelize.INTEGER,
+        references: {
+            model: "users",
+            key:"id"
+        }
       }
     });
   }

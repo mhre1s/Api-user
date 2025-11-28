@@ -21,8 +21,8 @@ class ApiUser {
 
   async Create(req, res) {
     try {
-      const { name, email, password } = req.body;
-      await serviceUser.Create(name, email, password)
+      const { email, password } = req.body;
+      await serviceUser.Create(email, password)
       res.status(204).send("Usuário criado com sucesso");
     } catch (error) {
       res.status(500).send(error);
@@ -32,8 +32,8 @@ class ApiUser {
   async Update(req, res){
     try {
       const {id} = req.params
-      const {name, email, password} = req.body
-      await serviceUser.Update(id, name, email, password)
+      const {email, password} = req.body
+      await serviceUser.Update(id, email, password)
       res.status(200).send("Usuário atualizado com sucesso")
     } catch (error) {
       console.error(error);

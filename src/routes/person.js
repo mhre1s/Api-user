@@ -1,13 +1,13 @@
 const express = require("express");
-const apiUser = require("../api/user");
+const apiPerson = require("../api/person");
 
 const router = express.Router();
 
 // Um POST para cada operação
-router.get("/", apiUser.FindAll);
-router.get("/:id", apiUser.FindById);
-router.post("/", apiUser.Create);
-router.put("/:id", apiUser.Update);
-router.delete("/:id", apiUser.Delete)
+router.get("/", apiPerson.FindAll);
+router.get("/:id", apiPerson.FindById);
+router.post("/", apiPerson.Create);
+router.put("/:id", apiPerson.Update);
+router.delete("/:id", apiPerson.Delete)
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const person = require("../model/person");
-
+const user = require("../model/user");
 
 
 class ServicePerson {
@@ -7,16 +7,18 @@ class ServicePerson {
     return person.findAll()
   }
   async FindById(id) {
-    return person.findByPk(id)
+    return person.findByPk(id, { include: { model: user }})
   }
-  async Create(name, address) {
+  async Create(name, address, userId) {
     if (!name) {
       throw new Error("Favor informar nome");
     } else if (!address) {
       throw new Error("Favor informar endereço");
-    } 
+    } else if(!userId){
+      throw new Error("Favor informar userId")
+    }
     await person.create({
-      name, address
+      name, address, userId
     })
   }
   async Update(id, name, address) {

@@ -1,4 +1,5 @@
 const database = require("../database")
+const person = require("./person")
 
 class User {
   constructor(){
@@ -18,6 +19,12 @@ class User {
         allowNull: false,
       },
     });
+    this.model.hasOne(person, {
+      foreignKey: 'userId'
+    })
+    person.belongsTo(this.model, { 
+      foreignKey: 'userId'
+    })
   }
 }
 

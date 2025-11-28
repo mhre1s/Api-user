@@ -1,10 +1,10 @@
-const serviceUser = require("../services/user")
+const servicePerson = require("../services/person")
 
-class ApiUser {
+class ApiPerson {
   async FindAll(req, res) {
     try {
-     const users = await serviceUser.FindAll();
-      res.status(200).send(users);
+     const result = await servicePerson.FindAll();
+      res.status(200).send(result);
     } catch (error) {
       res.status(500).send(error);
     }
@@ -12,8 +12,8 @@ class ApiUser {
   async FindById(req, res) {
     try {
       const { id } = req.params;
-      const user = await serviceUser.FindById(id);
-      res.status(200).send(user);
+      const result = await servicePerson.FindById(id);
+      res.status(200).send(result);
     } catch (error) {
       res.status(500).send(error);
     }
@@ -21,8 +21,8 @@ class ApiUser {
 
   async Create(req, res) {
     try {
-      const { name, email, password } = req.body;
-      await serviceUser.Create(name, email, password)
+      const { name, address, userId } = req.body;
+      await servicePerson.Create(name, address, userId)
       res.status(204).send("Usuário criado com sucesso");
     } catch (error) {
       res.status(500).send(error);
@@ -32,8 +32,8 @@ class ApiUser {
   async Update(req, res){
     try {
       const {id} = req.params
-      const {name, email, password} = req.body
-      await serviceUser.Update(id, name, email, password)
+      const {name, address} = req.body
+      await servicePerson.Update(id, name, address)
       res.status(200).send("Usuário atualizado com sucesso")
     } catch (error) {
       console.error(error);
@@ -44,7 +44,7 @@ class ApiUser {
   async Delete(req, res){
     try {
       const { id } = req.params
-      await serviceUser.Delete(id)
+      await servicePerson.Delete(id)
       res.status(204).send("Usuario deletado com sucesso")
     } catch (error) {
       res.status(500).send(error)
@@ -52,4 +52,4 @@ class ApiUser {
   }
 }
 
-module.exports = new ApiUser();
+module.exports = new ApiPerson();
